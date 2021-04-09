@@ -1,39 +1,57 @@
 package org.seleniumdemo.pageobject;
 
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Before;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import java.util.Objects;
-
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.seleniumdemo.pageobject.*;
+ 
 public class HomePage {
-    @FindBy(linkText = "Women")
-    private WebElement womenMenu;
+ 
+   WebDriver driver;
+   WebDriverWait wait;
 
-    @FindBy(name = "search_query")
-    private WebElement searchField;
+ //Constructor that will be automatically called as soon as the object of the class is created
+ public HomePage(WebDriver driver) {
+    this.driver=driver;
+ }
+ 
+ // Set wait limit
+ // WaitPageElement waitFor = new webpage
+ WaitPageElement waitFor = new WaitPageElement(driver, wait);
 
-    private final WebDriver driver;
+ //Locator for searchbox
+ By searchBox = By.id("twotabsearchtextbox");
 
-    public HomePage(final WebDriver driver) {
-        Objects.requireNonNull(driver);
-        this.driver = driver;
-        PageFactory.initElements(this.driver, this);
-    }
+ //
+ By cart = By.id("nav-cart");
+ 
 
-    public void goToWomenSubcategory() {
-        womenMenu.click();
-    }
+ public void waitProduct(By itemLocator) {
+   WebDriverWait wait = new WebDriverWait(driver, 15);  
+   wait.until(ExpectedConditions.visibilityOfElementLocated(itemLocator));
+}
 
-    public void loadHomePage() {
-        driver.get("http://automationpractice.com/index.php");
-    }
+ //Method to search
+ public void searchText(CharSequence searchText) {
+    driver.findElement(searchBox).sendKeys(searchText);
+    driver.findElement(searchBox).sendKeys(Keys.ENTER);
+ }
 
-    public void search(String searchText) {
-        Objects.requireNonNull(searchText);
-        searchField.sendKeys(searchText);
-        searchField.sendKeys(Keys.ENTER);
-    }
+
+ public void viewCart() {
+   
+    System.out.println("hello prev: " + cart);
+   waitProduct(cart);
+   waitFor.waits(cart, driver, wait);
+    driver.findElement(cart).click();
+ }
 }

@@ -1,38 +1,40 @@
 package org.seleniumdemo.pageobject;
 
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Before;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.seleniumdemo.common.Wait;
-
-import java.util.Objects;
-
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+ 
 public class ProductDetailPage {
-    @FindBy(name = "Submit")
-    private WebElement submitButton;
-
-    private static final By CHECKOUT_BUTTON = By.cssSelector("a[title='Proceed to checkout']");
-
-    private final WebDriver driver;
-
-    public ProductDetailPage(final WebDriver driver) {
-        Objects.requireNonNull(driver);
-        this.driver = driver;
-        PageFactory.initElements(this.driver, this);
+    
+    WebDriver driver;
+    WebDriverWait wait;
+ 
+    //Constructor that will be automatically called as soon as the object of the class is created
+    public ProductDetailPage(WebDriver driver) {
+        this.driver=driver;
     }
+    
+    //Locators for the page title and the logout button
+    By addButton = By.cssSelector("[id='buyBoxAccordion'] .a-button-stack");
+    
 
-    public void addProductToCart() {
-        submitButton.click();
-
-        new WebDriverWait(driver, Wait.SHORT_WAIT)
-            .until((WebDriver driver1) -> {
-                WebElement checkoutButton = driver1.findElement(CHECKOUT_BUTTON);
-                return checkoutButton != null && checkoutButton.isDisplayed();
-            });
-
-        driver.findElement(CHECKOUT_BUTTON).click();
+    public void waitProduct() {
+        this.wait = new WebDriverWait(driver, 15);  
+        wait.until(ExpectedConditions.visibilityOfElementLocated(addButton));
+    }
+    
+    //Method to click on Logout button
+    public void clickAddCart() {
+        waitProduct();
+        driver.findElement(addButton).click();
     }
 }
