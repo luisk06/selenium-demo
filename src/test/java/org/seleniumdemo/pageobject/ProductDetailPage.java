@@ -1,18 +1,10 @@
 package org.seleniumdemo.pageobject;
 
-import java.util.concurrent.TimeUnit;
-
-import org.junit.Before;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumdemo.common.Wait;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.Test;
  
 public class ProductDetailPage {
     
@@ -24,9 +16,9 @@ public class ProductDetailPage {
         this.driver=driver;
     }
     
-    //Locators for the page title and the logout button
+    //Locators for 'Add to Cart' button and 'Side Panel'
     By addButton = By.cssSelector("[id='add-to-cart-button']");
-    By closeSidePanel = By.cssSelector("[data-cart-type='Retail_Cart']");
+    By sidePanel = By.cssSelector("[data-cart-type='Retail_Cart']");
     
 
     public void waitProduct(By selector) {
@@ -34,10 +26,10 @@ public class ProductDetailPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
     
-    //Method to click on Logout button
+    //Method : click to add a product
     public void clickAddCart() {
         waitProduct(addButton);
         driver.findElement(addButton).click();
-        waitProduct(closeSidePanel);
+        waitProduct(sidePanel);
     }
 }

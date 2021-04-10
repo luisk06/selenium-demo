@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumdemo.common.Wait;
 
  
-// '[data-name="Active Items"] .sc-list-item'
 public class CartPage {
     WebDriver driver;
     WebDriverWait wait;
@@ -17,7 +16,7 @@ public class CartPage {
         this.driver=driver;
     }
     
-    //Locators for the page title and the logout button
+    //Locators for list of items
     By listItem = By.cssSelector("[data-name='Active Items'] .sc-list-item");
     
 
@@ -26,7 +25,7 @@ public class CartPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
     
-    //Method to click on Logout button
+    //Method to get the number of items in the cart
     public int verifyCart() {
         waitProduct(listItem);
         int itemsNumber =  driver.findElements(By.cssSelector("[id='sc-active-cart'] .sc-list-item")).size();

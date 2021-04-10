@@ -1,16 +1,10 @@
 package org.seleniumdemo.pageobject;
 
-import org.junit.Before;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumdemo.common.Wait;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.Test;
  
 public class ResultsPage {
  
@@ -22,7 +16,7 @@ public class ResultsPage {
       this.driver=driver;
    }
    
-   //Locators for the page title and the logout button
+   //Locator for element in product list
     By productList = By.cssSelector("[cel_widget_id='MAIN-SEARCH_RESULTS-1'] .a-link-normal");
    
  
@@ -32,7 +26,7 @@ public class ResultsPage {
       wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
    }
    
-   //Method to click on  button
+   //Click method to add product
    public void clickProduct() {
       waitProduct(productList);
       driver.findElement(productList).click();

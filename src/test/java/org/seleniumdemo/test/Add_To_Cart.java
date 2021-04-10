@@ -10,9 +10,12 @@ import org.seleniumdemo.pageobject.*;
 
 public class Add_To_Cart {
         public static void main(String[] args) throws Exception {
+                // Test Case for adding one item to shopping cart
                 addToCartTest();
+                // Parenthesis test class call
+                ParenthesisTest.main("The -((((12345))))- brown fox (-123-((4567))89umxc)ps (ov(er)) the ((lazy)) ()dog.");
         }
-        
+
         @Test
         public static void addToCartTest() throws Exception {
                 

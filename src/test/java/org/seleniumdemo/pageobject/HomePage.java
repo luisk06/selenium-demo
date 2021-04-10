@@ -20,7 +20,7 @@ public class HomePage {
    //Locator for searchbox
    By searchBox = By.id("twotabsearchtextbox");
 
-   //
+   // Locator for cart link
    By cart = By.id("nav-cart");
    
 
@@ -38,7 +38,6 @@ public class HomePage {
 
    public void viewCart() {
       waitProduct(cart);
-      // waitFor.waits(cart, driver, wait);
       driver.findElement(cart).click();
    }
 }
