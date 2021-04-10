@@ -12,8 +12,8 @@ public class Add_To_Cart {
         public static void main(String[] args) throws Exception {
                 addToCartTest();
         }
+        
         @Test
-
         public static void addToCartTest() throws Exception {
                 
                 //Instantiating chrome driver

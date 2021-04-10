@@ -26,7 +26,7 @@ public class ProductDetailPage {
     
     //Locators for the page title and the logout button
     By addButton = By.cssSelector("[id='add-to-cart-button']");
-    By closeSidePanel = By.cssSelector("[id='attach-close_sideSheet-link']");
+    By closeSidePanel = By.cssSelector("[data-cart-type='Retail_Cart']");
     
 
     public void waitProduct(By selector) {
