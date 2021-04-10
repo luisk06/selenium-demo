@@ -34,15 +34,19 @@ public class Add_To_Cart {
                 CartPage cartPage = new CartPage(driver);
 
                 String text = "Seagate Portable 2TB";
-
+                // Search products using the textbox available for that purpose
                 home.searchText(text);
 
+                // Click to see one product details 
                 results.clickProduct();
 
+                // Add the chosen product to shopping cart
                 productPage.clickAddCart();
 
+                // View shopping cart summary
                 home.viewCart();
 
+                // Verify the product was added to shopping cart
                 assertEquals(1, cartPage.verifyCart());
 
                 //Close driver instance
